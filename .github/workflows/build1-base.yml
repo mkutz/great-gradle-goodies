@@ -19,5 +19,4 @@ jobs:
           java-version: 21
           overwrite-settings: false
 
-      - run: ./gradlew check --no-daemon
-        working-directory: services/base
+      - run: ./gradlew :services:base:check --no-daemon

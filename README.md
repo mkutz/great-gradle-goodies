@@ -1,7 +1,4 @@
 # Great Gradle Goodies
-[![Build](https://github.com/mkutz/great-gradle-goodies/actions/workflows/build.yml/badge.svg)](https://github.com/mkutz/great-gradle-goodies/actions/workflows/build.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mkutz_great-gradle-goodies&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mkutz_great-gradle-goodies)
-
 
 ## [Toolchains for JVM Projects](https://docs.gradle.org/current/userguide/toolchains.html) and [GitHub setup-java](https://github.com/marketplace/actions/setup-java-jdk)
 
