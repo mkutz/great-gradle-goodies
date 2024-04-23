@@ -57,6 +57,10 @@ testing {
   }
 }
 
+tasks.check {
+  dependsOn(testing.suites.named("integrationTest"))
+}
+
 java {
   toolchain {
     languageVersion = JavaLanguageVersion.of(file(".java-version").readText(Charsets.UTF_8).trim())

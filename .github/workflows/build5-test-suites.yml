@@ -1,4 +1,4 @@
-name: Build Version Catalogs
+name: Build Test Suites
 
 on:
   push:
@@ -21,4 +21,4 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v3
 
-      - run: ./gradlew :services:version-catalogs:check --no-daemon
+      - run: ./gradlew :services:test-suites:check --no-daemon
