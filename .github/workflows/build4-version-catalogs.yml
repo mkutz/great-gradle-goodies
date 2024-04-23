@@ -1,6 +1,7 @@
 name: Build Version Catalogs
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main

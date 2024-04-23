@@ -1,6 +1,7 @@
 name: Build Toolchains
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
