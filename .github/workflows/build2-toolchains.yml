@@ -18,7 +18,6 @@ jobs:
         with:
           distribution: temurin
           java-version-file: services/toolchains/.java-version
-          overwrite-settings: false
 
       - uses: gradle/actions/setup-gradle@v3
 
