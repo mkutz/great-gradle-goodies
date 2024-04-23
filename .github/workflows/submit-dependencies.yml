@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          version: 21
+          java-version: 21
           overwrite-settings: false
 
       - uses: gradle/actions/dependency-submission@v3
