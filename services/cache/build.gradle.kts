@@ -38,10 +38,7 @@ dependencies {
 
 java {
   toolchain {
-    languageVersion = JavaLanguageVersion
-      .of(file(".java-version")
-        .readText(Charsets.UTF_8)
-        .trim())
+    languageVersion = JavaLanguageVersion.of(file(".java-version").readText(Charsets.UTF_8).trim())
   }
 }
 
@@ -54,7 +51,5 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
   useJUnitPlatform()
-  testLogging {
-    events("passed", "skipped", "failed")
-  }
+  testLogging { events("passed", "skipped", "failed") }
 }

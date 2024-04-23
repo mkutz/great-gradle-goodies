@@ -25,13 +25,16 @@ dependencies {
 
 testing {
   suites {
-    withType(JvmTestSuite::class).configureEach {
+    withType<JvmTestSuite> {
       useJUnitJupiter()
       dependencies {
         implementation(platform(libs.junitBom))
         implementation("org.junit.jupiter:junit-jupiter-api")
         implementation(libs.assertjCore)
         runtimeOnly("org.junit.platform:junit-platform-launcher")
+      }
+      targets {
+        all { testTask.configure { testLogging { events("passed", "skipped", "failed") } } }
       }
     }
 
@@ -40,25 +43,23 @@ testing {
         dependencies { implementation("org.junit.jupiter:junit-jupiter-params") }
       }
 
-    register<JvmTestSuite>("integrationTest") {
-      dependencies {
-        implementation(project())
-        implementation(testFixtures(project()))
-        implementation("org.springframework.boot:spring-boot-starter-test")
-        implementation("org.springframework.boot:spring-boot-starter-webflux")
-        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-        implementation("org.springframework.boot:spring-boot-testcontainers")
-        implementation("org.testcontainers:junit-jupiter")
-        implementation("org.testcontainers:postgresql")
+    val integrationTest by
+      registering(JvmTestSuite::class) {
+        dependencies {
+          implementation(testFixtures(project()))
+          implementation("org.springframework.boot:spring-boot-starter-test")
+          implementation("org.springframework.boot:spring-boot-starter-webflux")
+          implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+          implementation("org.springframework.boot:spring-boot-testcontainers")
+          implementation("org.testcontainers:junit-jupiter")
+          implementation("org.testcontainers:postgresql")
+        }
+        testType = TestSuiteType.INTEGRATION_TEST
+        targets { all { testTask.configure { shouldRunAfter(test) } } }
       }
-      testType = TestSuiteType.INTEGRATION_TEST
-      targets { all { testTask.configure { shouldRunAfter(test) } } }
-    }
+    
+    tasks.check { dependsOn(integrationTest) }
   }
-}
-
-tasks.check {
-  dependsOn(testing.suites.named("integrationTest"))
 }
 
 java {
@@ -71,12 +72,5 @@ tasks.withType<KotlinCompile> {
   kotlinOptions {
     freeCompilerArgs += "-Xjsr305=strict"
     freeCompilerArgs += "-Xemit-jvm-type-annotations"
-  }
-}
-
-tasks.withType<Test> {
-  useJUnitPlatform()
-  testLogging {
-    events("passed", "skipped", "failed")
   }
 }

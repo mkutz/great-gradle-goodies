@@ -1,14 +1,28 @@
 [versions]
+kotlinVersion = "1.9.23"
+springBootVersion = "3.2.4"
 junitVersion = "5.10.2"
 assertjVersion = "3.25.3"
-kotlinVersion = "1.9.23"
+testcontainersVersion = "1.19.7"
 
 [libraries]
+springBootStarterDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "springBootVersion" }
+springBootStarterWebflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springBootVersion" }
+springBootStarterValidation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "springBootVersion" }
+jacksonModuleKotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.17.0" }
+postgresql = { module = "org.postgresql:postgresql", version = "42.7.3" }
 junitBom = { module = "org.junit:junit-bom", version.ref = "junitVersion" }
+junitJupiterApi = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitVersion" }
+junitJupiterParams = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junitVersion" }
 assertjCore = { module = "org.assertj:assertj-core", version.ref = "assertjVersion" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBootVersion" }
+springBootTestcontainers = { module = "org.springframework.boot:spring-boot-testcontainers", version.ref = "springBootVersion" }
+testcontainersJunitJupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainersVersion" }
+testcontainersPostgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainersVersion" }
+junitPlatformLauncher = { module = "org.junit.platform:junit-platform-launcher", version = "1.10.2" }
 
 [plugins]
-springBoot = { id = "org.springframework.boot", version = "3.2.4" }
+springBoot = { id = "org.springframework.boot", version.ref = "springBootVersion" }
 springDependencyManagement = { id = "io.spring.dependency-management", version = "1.1.4" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinVersion" }
 kotlinSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinVersion" }

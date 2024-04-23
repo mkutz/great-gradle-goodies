@@ -14,31 +14,28 @@ plugins {
 repositories { mavenCentral() }
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  implementation("org.springframework.boot:spring-boot-starter-webflux")
-  implementation("org.springframework.boot:spring-boot-starter-validation")
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-  runtimeOnly("org.postgresql:postgresql")
+  implementation(libs.springBootStarterDataJpa)
+  implementation(libs.springBootStarterWebflux)
+  implementation(libs.springBootStarterValidation)
+  implementation(libs.jacksonModuleKotlin)
+  runtimeOnly(libs.postgresql)
 
   testImplementation(platform(libs.junitBom))
-  testImplementation("org.junit.jupiter:junit-jupiter-api")
-  testImplementation("org.junit.jupiter:junit-jupiter-params")
+  testImplementation(libs.junitJupiterApi)
+  testImplementation(libs.junitJupiterParams)
   testImplementation(libs.assertjCore)
 
-  testImplementation("org.springframework.boot:spring-boot-starter-test")
-  testImplementation("org.springframework.boot:spring-boot-testcontainers")
-  testImplementation("org.testcontainers:junit-jupiter")
-  testImplementation("org.testcontainers:postgresql")
+  testImplementation(libs.springBootStarterTest)
+  testImplementation(libs.springBootTestcontainers)
+  testImplementation(libs.testcontainersJunitJupiter)
+  testImplementation(libs.testcontainersPostgresql)
 
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+  testRuntimeOnly(libs.junitPlatformLauncher)
 }
 
 java {
   toolchain {
-    languageVersion = JavaLanguageVersion
-      .of(file(".java-version")
-        .readText(Charsets.UTF_8)
-        .trim())
+    languageVersion = JavaLanguageVersion.of(file(".java-version").readText(Charsets.UTF_8).trim())
   }
 }
 
@@ -51,7 +48,5 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
   useJUnitPlatform()
-  testLogging {
-    events("passed", "skipped", "failed")
-  }
+  testLogging { events("passed", "skipped", "failed") }
 }
