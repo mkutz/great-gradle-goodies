@@ -1,0 +1,25 @@
+name: Build Toolchains
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - services/toolchains/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version-file: services/toolchains/.java-version
+          overwrite-settings: false
+
+      - uses: gradle/actions/setup-gradle@v3
+
+      - run: ./gradlew check --no-daemon
+        working-directory: services/toolchains

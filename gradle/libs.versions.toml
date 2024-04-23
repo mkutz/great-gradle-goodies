@@ -1,0 +1,17 @@
+[versions]
+junitVersion = "5.10.2"
+assertjVersion = "3.25.3"
+kotlinVersion = "1.9.23"
+
+[libraries]
+junitBom = { module = "org.junit:junit-bom", version.ref = "junitVersion" }
+assertjCore = { module = "org.assertj:assertj-core", version.ref = "assertjVersion" }
+
+[plugins]
+springBoot = { id = "org.springframework.boot", version = "3.2.4" }
+springDependencyManagement = { id = "io.spring.dependency-management", version = "1.1.4" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinVersion" }
+kotlinSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinVersion" }
+kotlinJpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlinVersion" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.6" }
+spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
