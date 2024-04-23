@@ -28,6 +28,6 @@ spotless {
 
   yaml {
     target("**/*.yml")
-    prettier()
+    jackson()
   }
 }

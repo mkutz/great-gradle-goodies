@@ -1,24 +1,20 @@
-name: Build Version Catalogs
-
-on:
-  workflow_dispatch:
+---
+name: "Build Version Catalogs"
+"on":
+  workflow_dispatch: null
   push:
     branches:
-      - main
+    - "main"
     paths:
-      - services/version-catalogs/**
-
+    - "services/version-catalogs/**"
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version-file: services/toolchains/.java-version
-
-      - uses: gradle/actions/setup-gradle@v3
-
-      - run: ./gradlew :services:version-catalogs:check --no-daemon
+    - uses: "actions/checkout@v4"
+    - uses: "actions/setup-java@v4"
+      with:
+        distribution: "temurin"
+        java-version-file: "services/toolchains/.java-version"
+    - uses: "gradle/actions/setup-gradle@v3"
+    - run: "./gradlew :services:version-catalogs:check --no-daemon"

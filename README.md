@@ -1,5 +1,13 @@
 # Great Gradle Goodies
 
+
+## Code Formatting with [Spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
+
+See [build.gradle.kts](build.gradle.kts)
+
+- Automatic formatting for all source files in the project
+
+
 ## [Toolchains for JVM Projects](https://docs.gradle.org/current/userguide/toolchains.html) and [GitHub setup-java](https://github.com/marketplace/actions/setup-java-jdk)
 
 See [services/toolchains](services/toolchains)
@@ -10,9 +18,10 @@ See [services/toolchains](services/toolchains)
 - setup-java allows to [use a java-version-file](https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Java-version-file) instead of a hardcoded version:
 
   ```yaml
-  - uses: actions/setup-java@v2
+  - uses: actions/setup-java@v4
     with:
-      java-version-file: .java-version
+      distribution: temurin
+      java-version-file: services/toolchains/.java-version
   ```
 
 - We can use the same file in the build.gradle.kts file(s) with a little hack:
@@ -56,20 +65,22 @@ See [services/cache](services/cache)
 
 See [services/version-catalogs](services/version-catalogs)
 
-- Create a file [libs.versions.toml](services/version-catalogs/libs.versions.toml) to declare all project dependencies in one central file.
+- Create a file [gradle/libs.versions.toml](gradle/libs.versions.toml) to declare all project dependencies in one central file.
 - [Rich versions](https://docs.gradle.org/current/userguide/rich_versions.html#rich-version-constraints)
 - [TOML files](https://toml.io/en/) Tom's Obvious, Minimal Language
 - Reference dependencies form anywhere in the project via the global version catalog:
 
   ```kotlin
-  plugins {
-      id("java")
+  plugins { 
+    alias(libs.plugins.springBoot)
+    // …
   }
+  // …
   dependencies {
-      implementation(libs.kotlin.stdlib)
+    implementation(libs.springBootStarterDataJpa)
+    // …
   }
   ```
-
 
 
 ## [Test Suites](https://docs.gradle.org/current/userguide/jvm_test_suite_plugin.html)<sup>incubating</sup> & [Test Fixtures](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
@@ -77,7 +88,58 @@ See [services/version-catalogs](services/version-catalogs)
 - Allows to create different source sets with different dependencies for each and have shared code in an additional test fixtures source set.
 - Also, it is possible to declare shared test dependencies for all the source sets (e.g. JUnit, AssertJ, Mockito, etc.).
 
-TODO
+```kotlin
+plugins {
+  // …
+  `java-test-fixtures`
+  `jvm-test-suite`
+  // …
+}
+
+// …
+
+testing {
+  suites {
+    // configure all test suites
+    withType<JvmTestSuite> {
+      useJUnitJupiter()
+      dependencies {
+        implementation(platform(libs.junitBom))
+        implementation(libs.junitJupiterApi)
+        implementation(libs.assertjCore)
+        runtimeOnly(libs.junitPlatformLauncher)
+      }
+      targets {
+        all { testTask.configure { testLogging { events("passed", "skipped", "failed") } } }
+      }
+    }
+
+    // configure the built-in unit test suite
+    val test by
+    getting(JvmTestSuite::class) {
+      dependencies { implementation(libs.junitJupiterParams) }
+    }
+
+    // configure the integration test suite
+    val integrationTest by
+    registering(JvmTestSuite::class) {
+      dependencies {
+        implementation(testFixtures(project()))
+        implementation(libs.springBootStarterTest)
+        implementation(libs.springBootStarterWebflux)
+        implementation(libs.springBootStarterDataJpa)
+        implementation(libs.springBootTestcontainers)
+        implementation(libs.testcontainersJunitJupiter)
+        implementation(libs.testcontainersPostgresql)
+      }
+      testType = TestSuiteType.INTEGRATION_TEST
+      targets { all { testTask.configure { shouldRunAfter(test) } } }
+    }
+
+    tasks.check { dependsOn(integrationTest) }
+  }
+}
+```
 
 
 ## [Dependency Submission](https://github.com/gradle/actions/blob/main/docs/dependency-submission.md)

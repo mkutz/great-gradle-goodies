@@ -16,11 +16,11 @@ plugins {
 repositories { mavenCentral() }
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  implementation("org.springframework.boot:spring-boot-starter-webflux")
-  implementation("org.springframework.boot:spring-boot-starter-validation")
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-  runtimeOnly("org.postgresql:postgresql")
+  implementation(libs.springBootStarterDataJpa)
+  implementation(libs.springBootStarterWebflux)
+  implementation(libs.springBootStarterValidation)
+  implementation(libs.jacksonModuleKotlin)
+  runtimeOnly(libs.postgresql)
 }
 
 testing {
@@ -29,9 +29,9 @@ testing {
       useJUnitJupiter()
       dependencies {
         implementation(platform(libs.junitBom))
-        implementation("org.junit.jupiter:junit-jupiter-api")
+        implementation(libs.junitJupiterApi)
         implementation(libs.assertjCore)
-        runtimeOnly("org.junit.platform:junit-platform-launcher")
+        runtimeOnly(libs.junitPlatformLauncher)
       }
       targets {
         all { testTask.configure { testLogging { events("passed", "skipped", "failed") } } }
@@ -39,25 +39,23 @@ testing {
     }
 
     val test by
-      getting(JvmTestSuite::class) {
-        dependencies { implementation("org.junit.jupiter:junit-jupiter-params") }
-      }
+      getting(JvmTestSuite::class) { dependencies { implementation(libs.junitJupiterParams) } }
 
     val integrationTest by
       registering(JvmTestSuite::class) {
         dependencies {
           implementation(testFixtures(project()))
-          implementation("org.springframework.boot:spring-boot-starter-test")
-          implementation("org.springframework.boot:spring-boot-starter-webflux")
-          implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-          implementation("org.springframework.boot:spring-boot-testcontainers")
-          implementation("org.testcontainers:junit-jupiter")
-          implementation("org.testcontainers:postgresql")
+          implementation(libs.springBootStarterTest)
+          implementation(libs.springBootStarterWebflux)
+          implementation(libs.springBootStarterDataJpa)
+          implementation(libs.springBootTestcontainers)
+          implementation(libs.testcontainersJunitJupiter)
+          implementation(libs.testcontainersPostgresql)
         }
         testType = TestSuiteType.INTEGRATION_TEST
         targets { all { testTask.configure { shouldRunAfter(test) } } }
       }
-    
+
     tasks.check { dependsOn(integrationTest) }
   }
 }
