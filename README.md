@@ -85,6 +85,8 @@ See [services/version-catalogs](services/version-catalogs)
 
 ## [Test Suites](https://docs.gradle.org/current/userguide/jvm_test_suite_plugin.html)<sup>incubating</sup> & [Test Fixtures](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
 
+See [services/test-suites](services/test-suites)
+
 - Allows to create different source sets with different dependencies for each and have shared code in an additional test fixtures source set.
 - Also, it is possible to declare shared test dependencies for all the source sets (e.g. JUnit, AssertJ, Mockito, etc.).
 
@@ -144,8 +146,10 @@ testing {
 
 ## [Dependency Submission](https://github.com/gradle/actions/blob/main/docs/dependency-submission.md)
 
+See [.github/workflows/submit-dependencies.yml](.github/workflows/submit-dependencies.yml)
+
 - In addition to the setup-gradle action, there's submit-dependencies, which submits the dependency graph to GitHub.
-- As a result we will see Gradle dependencies in the GitHub UI!
+- As a result we will see Gradle dependencies [in the GitHub UI](https://github.com/mkutz/great-gradle-goodies/security)!
 
   ```yaml
   name: Submit Dependencies
@@ -174,7 +178,6 @@ testing {
           with:
             distribution: temurin
             version: 21
-            overwrite-settings: false
 
         - uses: gradle/actions/dependency-submission@v3
   ```
