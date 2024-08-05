@@ -20,4 +20,4 @@ jobs:
       with:
         distribution: "temurin"
         java-version-file: "services/toolchains/.java-version"
-    - uses: "gradle/actions/dependency-submission@v3"
+    - uses: "gradle/actions/dependency-submission@v4"
