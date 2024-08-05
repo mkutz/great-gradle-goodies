@@ -1,7 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
   alias(libs.plugins.springBoot)
   alias(libs.plugins.springDependencyManagement)
@@ -66,9 +64,19 @@ java {
   }
 }
 
-tasks.withType<KotlinCompile> {
-  kotlinOptions {
-    freeCompilerArgs += "-Xjsr305=strict"
-    freeCompilerArgs += "-Xemit-jvm-type-annotations"
+kotlin {
+  compilerOptions {
+    freeCompilerArgs = listOf("-Xjsr305=strict", "-Xemit-jvm-type-annotations")
+    allWarningsAsErrors = true
   }
 }
+
+configurations
+  .matching { it.name == "detekt" }
+  .all {
+    resolutionStrategy.eachDependency {
+      if (requested.group == "org.jetbrains.kotlin") {
+        useVersion(io.gitlab.arturbosch.detekt.getSupportedKotlinVersion())
+      }
+    }
+  }

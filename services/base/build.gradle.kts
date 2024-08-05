@@ -1,7 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
   id("org.springframework.boot") version "3.3.2"
   id("io.spring.dependency-management") version "1.1.6"
@@ -38,10 +36,10 @@ dependencies {
 
 java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
 
-tasks.withType<KotlinCompile> {
-  kotlinOptions {
-    freeCompilerArgs += "-Xjsr305=strict"
-    freeCompilerArgs += "-Xemit-jvm-type-annotations"
+kotlin {
+  compilerOptions {
+    freeCompilerArgs = listOf("-Xjsr305=strict", "-Xemit-jvm-type-annotations")
+    allWarningsAsErrors = true
   }
 }
 
@@ -49,3 +47,13 @@ tasks.withType<Test> {
   useJUnitPlatform()
   testLogging { events("passed", "skipped", "failed") }
 }
+
+configurations
+  .matching { it.name == "detekt" }
+  .all {
+    resolutionStrategy.eachDependency {
+      if (requested.group == "org.jetbrains.kotlin") {
+        useVersion(io.gitlab.arturbosch.detekt.getSupportedKotlinVersion())
+      }
+    }
+  }
