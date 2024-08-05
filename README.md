@@ -179,5 +179,5 @@ See [.github/workflows/submit-dependencies.yml](.github/workflows/submit-depende
             distribution: temurin
             version: 21
 
-        - uses: gradle/actions/dependency-submission@v3
+        - uses: gradle/actions/dependency-submission@v4
   ```
