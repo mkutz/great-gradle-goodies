@@ -1,6 +1,6 @@
 [versions]
 kotlinVersion = "1.9.23"
-springBootVersion = "3.2.4"
+springBootVersion = "3.3.2"
 junitVersion = "5.10.2"
 assertjVersion = "3.25.3"
 testcontainersVersion = "1.19.7"
