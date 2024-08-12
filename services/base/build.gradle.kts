@@ -19,7 +19,7 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   runtimeOnly("org.postgresql:postgresql")
 
-  val junitVersion = "5.10.2"
+  val junitVersion = "5.10.3"
   testImplementation(platform("org.junit:junit-bom:$junitVersion"))
   testImplementation("org.junit.jupiter:junit-jupiter-api")
   testImplementation("org.junit.jupiter:junit-jupiter-params")
