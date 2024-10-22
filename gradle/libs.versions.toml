@@ -1,5 +1,5 @@
 [versions]
-kotlinVersion = "2.0.0"
+kotlinVersion = "2.0.21"
 springBootVersion = "3.3.5"
 junitVersion = "5.11.3"
 assertjVersion = "3.26.3"
