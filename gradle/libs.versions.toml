@@ -3,7 +3,7 @@ kotlinVersion = "2.0.0"
 springBootVersion = "3.3.3"
 junitVersion = "5.11.3"
 assertjVersion = "3.26.3"
-testcontainersVersion = "1.20.1"
+testcontainersVersion = "1.20.3"
 
 [libraries]
 springBootStarterDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "springBootVersion" }
