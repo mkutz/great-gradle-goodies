@@ -134,7 +134,6 @@ testing {
         implementation(libs.testcontainersJunitJupiter)
         implementation(libs.testcontainersPostgresql)
       }
-      testType = TestSuiteType.INTEGRATION_TEST
       targets { all { testTask.configure { shouldRunAfter(test) } } }
     }
 
