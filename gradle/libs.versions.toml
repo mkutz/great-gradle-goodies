@@ -12,14 +12,14 @@ springBootStarterValidation = { module = "org.springframework.boot:spring-boot-s
 jacksonModuleKotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.17.2" }
 postgresql = { module = "org.postgresql:postgresql", version = "42.7.3" }
 junitBom = { module = "org.junit:junit-bom", version.ref = "junitVersion" }
-junitJupiterApi = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitVersion" }
-junitJupiterParams = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junitVersion" }
+junitJupiterApi = { module = "org.junit.jupiter:junit-jupiter-api" }
+junitJupiterParams = { module = "org.junit.jupiter:junit-jupiter-params" }
+junitPlatformLauncher = { module = "org.junit.platform:junit-platform-launcher" }
 assertjCore = { module = "org.assertj:assertj-core", version.ref = "assertjVersion" }
 springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBootVersion" }
 springBootTestcontainers = { module = "org.springframework.boot:spring-boot-testcontainers", version.ref = "springBootVersion" }
 testcontainersJunitJupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainersVersion" }
 testcontainersPostgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainersVersion" }
-junitPlatformLauncher = { module = "org.junit.platform:junit-platform-launcher", version = "1.12.0" }
 
 [plugins]
 springBoot = { id = "org.springframework.boot", version.ref = "springBootVersion" }
