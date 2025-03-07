@@ -7,7 +7,7 @@ plugins {
   id("org.jetbrains.kotlin.jvm") version kotlinVersion
   id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
   id("org.jetbrains.kotlin.plugin.jpa") version kotlinVersion
-  id("io.gitlab.arturbosch.detekt") version "1.23.6"
+  id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
 
 repositories { mavenCentral() }
