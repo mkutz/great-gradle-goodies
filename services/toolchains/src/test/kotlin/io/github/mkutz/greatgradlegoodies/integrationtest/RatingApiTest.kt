@@ -83,9 +83,9 @@ class RatingApiTest {
     response.expectAll(
       { it.expectStatus().isBadRequest() },
       { it.expectHeader().doesNotExist("Location") },
-      { it.expectBody().jsonPath("title", "Bad Request") },
-      { it.expectBody().jsonPath("detail", "Invalid request content.") },
-      { it.expectBody().jsonPath("status", "400") }
+      {
+        it.expectBody().jsonPath("error").isEqualTo("Bad Request").jsonPath("status").isEqualTo(400)
+      }
     )
   }
 }
