@@ -23,7 +23,7 @@ testcontainersPostgresql = { module = "org.testcontainers:postgresql", version.r
 
 [plugins]
 springBoot = { id = "org.springframework.boot", version.ref = "springBootVersion" }
-springDependencyManagement = { id = "io.spring.dependency-management", version = "1.1.6" }
+springDependencyManagement = { id = "io.spring.dependency-management", version = "1.1.7" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinVersion" }
 kotlinSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinVersion" }
 kotlinJpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlinVersion" }
