@@ -10,7 +10,7 @@ springBootStarterDataJpa = { module = "org.springframework.boot:spring-boot-star
 springBootStarterWebflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springBootVersion" }
 springBootStarterValidation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "springBootVersion" }
 jacksonModuleKotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.18.3" }
-postgresql = { module = "org.postgresql:postgresql", version = "42.7.6" }
+postgresql = { module = "org.postgresql:postgresql", version = "42.7.7" }
 junitBom = { module = "org.junit:junit-bom", version.ref = "junitVersion" }
 junitJupiterApi = { module = "org.junit.jupiter:junit-jupiter-api" }
 junitJupiterParams = { module = "org.junit.jupiter:junit-jupiter-params" }
