@@ -28,4 +28,4 @@ kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinVersion" }
 kotlinSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinVersion" }
 kotlinJpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlinVersion" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.8" }
-spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
+spotless = { id = "com.diffplug.spotless", version = "7.2.0" }
