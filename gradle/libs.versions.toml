@@ -2,7 +2,7 @@
 kotlinVersion = "2.2.0"
 springBootVersion = "3.5.4"
 junitVersion = "5.13.4"
-assertjVersion = "3.27.3"
+assertjVersion = "3.27.4"
 testcontainersVersion = "1.21.3"
 
 [libraries]
