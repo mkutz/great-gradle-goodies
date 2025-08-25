@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-  id("org.springframework.boot") version "3.5.4"
+  id("org.springframework.boot") version "3.5.5"
   id("io.spring.dependency-management") version "1.1.7"
   val kotlinVersion = "2.2.10"
   id("org.jetbrains.kotlin.jvm") version kotlinVersion
