@@ -23,7 +23,7 @@ dependencies {
   testImplementation(platform("org.junit:junit-bom:$junitVersion"))
   testImplementation("org.junit.jupiter:junit-jupiter-api")
   testImplementation("org.junit.jupiter:junit-jupiter-params")
-  val assertJVersion = "3.27.5"
+  val assertJVersion = "3.27.6"
   testImplementation("org.assertj:assertj-core:$assertJVersion")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
