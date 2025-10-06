@@ -22,7 +22,7 @@ jobs:
       with:
         java-version: 21
         distribution: "temurin"
-    - uses: "gradle/actions/setup-gradle@v4"
+    - uses: "gradle/actions/setup-gradle@v5"
     - run: "./gradlew check"
     - name: "cache SonarCloud packages"
       uses: "actions/cache@v4"
