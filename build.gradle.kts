@@ -1,6 +1,6 @@
 plugins {
   id("org.sonarqube") version "7.0.0.6105"
-  id("com.diffplug.spotless") version "6.25.0"
+  id("com.diffplug.spotless") version "8.0.0"
 }
 
 repositories { mavenCentral() }
