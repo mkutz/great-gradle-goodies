@@ -3,7 +3,7 @@
 plugins {
   id("org.springframework.boot") version "3.5.7"
   id("io.spring.dependency-management") version "1.1.7"
-  val kotlinVersion = "2.3.0"
+  val kotlinVersion = "2.3.10"
   id("org.jetbrains.kotlin.jvm") version kotlinVersion
   id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
   id("org.jetbrains.kotlin.plugin.jpa") version kotlinVersion
