@@ -1,5 +1,5 @@
 plugins {
-  id("org.sonarqube") version "7.4.0.8496"
+  id("org.sonarqube") version "7.5.0.8588"
   id("com.diffplug.spotless") version "6.25.0"
 }
 
